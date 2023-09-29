@@ -2,8 +2,8 @@ package dat3.security.config;
 
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import com.nimbusds.jose.proc.SecurityContext;
-import dat3.security.error.CustomOAuth2AccessDeniedHandler;
-import dat3.security.error.CustomOAuth2AuthenticationEntryPoint;
+import dat3.security.config.error.CustomOAuth2AccessDeniedHandler;
+import dat3.security.config.error.CustomOAuth2AuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -74,7 +74,7 @@ public class SecurityConfig {
             .requestMatchers(mvcMatcherBuilder.pattern("/error")).permitAll()
 
             //This is for demo purposes only, and should be removed for a real system
-            //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/user-only")).hasAuthority("USER")
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/demo/user")).hasAuthority("USER")
             //.requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.GET, "/api/test/admin-only")).hasAuthority("ADMIN")
 
             //Use this to completely disable security (Will not work if endpoints has been marked with @PreAuthorize)
